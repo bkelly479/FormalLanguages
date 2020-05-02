@@ -6,6 +6,8 @@ from automata.fa.nfa import NFA
 from automata.fa.dfa import DFA
 from graphviz import Digraph
 import infixToPostfix
+import thompsonsAlg
+import pprint
 
 #create commandline arguments 
 parser = argparse.ArgumentParser()
@@ -20,5 +22,14 @@ regexToMatch = regexFile.read()
 infixObj = infixToPostfix.Convert(len(regexToMatch))
 postfix = infixObj.infixToPostfix(regexToMatch)
 
-print(args.REGEX)
+thompsonOutput = thompsonsAlg.thompsonsAlg(postfix)
+
+if(args.DFA):
+    print("DFA SPECIFIED")
+if(args.NFA):
+    print("NFA SPECIFIED")
+
+print(regexToMatch)
 print(postfix)
+print(thompsonOutput.s)
+print(thompsonOutput.keys)
