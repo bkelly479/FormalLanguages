@@ -5,6 +5,7 @@ import argparse
 from automata.fa.nfa import NFA
 from automata.fa.dfa import DFA
 from graphviz import Digraph
+import infixToPostfix
 
 #create commandline arguments 
 parser = argparse.ArgumentParser()
@@ -16,4 +17,8 @@ args = parser.parse_args()
 regexFile = open(args.REGEX, "r")
 regexToMatch = regexFile.read()
 
-print(args.DFA)
+infixObj = infixToPostfix.Convert(len(regexToMatch))
+postfix = infixObj.infixToPostfix(regexToMatch)
+
+print(args.REGEX)
+print(postfix)
