@@ -1,15 +1,19 @@
 #!/use/bin/env py -3
 
+#import required modules 
 import argparse
+from automata.fa.nfa import NFA
+from automata.fa.dfa import DFA
+from graphviz import Digraph
 
 #create commandline arguments 
 parser = argparse.ArgumentParser()
-parser.add_argument("-n")
-parser.add_argument("-d")
+parser.add_argument("-n", "--NFA", help="location to which NFA file will be output")
+parser.add_argument("-d", "--DFA", help="location to shich DFA file will be output")
 parser.add_argument("REGEX")
 args = parser.parse_args()
 
 regexFile = open(args.REGEX, "r")
+regexToMatch = regexFile.read()
 
-
-print(regexFile.read())
+print(args.DFA)
