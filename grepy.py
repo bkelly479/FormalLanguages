@@ -24,7 +24,7 @@ infixObj = infixToPostfix.Convert(len(regexToMatch))
 postfix = infixObj.infixToPostfix(regexToMatch)
 
 #thompson alg output 
-thompsonOutput = thompsonsAlg.thompsonsAlg(postfix)
+thompsonOutput = thompsonsAlg.thompsonsAlg(regexToMatch)
 
 #check for NFA and DFA
 if(args.DFA):
