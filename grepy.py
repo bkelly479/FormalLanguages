@@ -5,7 +5,6 @@ import argparse
 from automata.fa.nfa import NFA
 from automata.fa.dfa import DFA
 from graphviz import Digraph
-import infixToPostfix
 import thompsonsAlg
 
 #create commandline arguments 
@@ -19,12 +18,25 @@ args = parser.parse_args()
 regexFile = open(args.REGEX, "r")
 regexToMatch = regexFile.read()
 
-#converts infix regex to postfix regex idk if i even need thins
-infixObj = infixToPostfix.Convert(len(regexToMatch))
-postfix = infixObj.infixToPostfix(regexToMatch)
 
-#thompson alg output 
+#thompson alg output returns essentially a transition table
 thompsonOutput = thompsonsAlg.thompsonsAlg(regexToMatch)
+
+#outputs of the 5 touple
+print(set(thompsonOutput.s.keys()))
+print(set(thompsonOutput.keys))
+print(type(thompsonOutput.s))
+print(list(thompsonOutput.s.keys())[0])
+print({list(thompsonOutput.s.keys())[len(list(thompsonOutput.s.keys())) -1]})
+
+#let's try building an NFA!
+naf = NFA(
+    states=set(thompsonOutput.s.keys()),
+    input_symbols= set(thompsonOutput.keys),
+    transitions= thompsonOutput.s,
+    initial_state= list(thompsonOutput.s.keys())[0],
+    final_states= {list(thompsonOutput.s.keys())[len(list(thompsonOutput.s.keys())) -1]}
+)
 
 #check for NFA and DFA
 if(args.DFA):
@@ -34,8 +46,6 @@ if(args.NFA):
 
 
 #outputs mostly for testing atm 
-print(regexToMatch)
-print(postfix)
 print("S")
 print(thompsonOutput.s)
 print("KEYS")
