@@ -72,9 +72,10 @@ def thompsonsAlg(postfix):
             pass
     
     #add last accepting state 
-    s['q' + str(currentState)] = {''}
+    s['q' + str(currentState)] = {'':''}
 
-    #print(type(s))
+    print('THIS IS SOMETHING IMPORTANT')
+    print(s)
     #print(keys)
     #print(type(inputSymbols))
 
