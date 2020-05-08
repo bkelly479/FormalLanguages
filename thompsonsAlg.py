@@ -22,7 +22,7 @@ def thompsonsAlg(postfix):
     s['q' + str(currentState)] = {'': {'q' + str(currentState + 1)}}
     currentState += 1
 
-    print("REGEX IN THOMPSON ALG: " + regex)
+    #print("REGEX IN THOMPSON ALG: " + regex)
 
 
     for i in regex:
@@ -74,8 +74,8 @@ def thompsonsAlg(postfix):
     #add last accepting state 
     s['q' + str(currentState)] = {'':''}
 
-    print('THIS IS SOMETHING IMPORTANT')
-    print(s)
+    #print('THIS IS SOMETHING IMPORTANT')
+    #print(s)
     #print(keys)
     #print(type(inputSymbols))
 

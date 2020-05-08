@@ -23,20 +23,24 @@ regexToMatch = regexFile.read()
 thompsonOutput = thompsonsAlg.thompsonsAlg(regexToMatch)
 
 #outputs of the 5 touple
-print(set(thompsonOutput.s.keys()))
-print(set(thompsonOutput.keys))
-print(type(thompsonOutput.s))
-print(list(thompsonOutput.s.keys())[0])
-print({list(thompsonOutput.s.keys())[len(list(thompsonOutput.s.keys())) -1]})
+#print(set(thompsonOutput.s.keys()))
+#print(set(thompsonOutput.keys))
+#print(type(thompsonOutput.s))
+#print(list(thompsonOutput.s.keys())[0])
+#print({list(thompsonOutput.s.keys())[len(list(thompsonOutput.s.keys())) -1]})
 
 #let's try building an NFA!
-naf = NFA(
+nfa = NFA(
     states=set(thompsonOutput.s.keys()),
     input_symbols= set(thompsonOutput.keys),
     transitions= thompsonOutput.s,
     initial_state= list(thompsonOutput.s.keys())[0],
     final_states= {list(thompsonOutput.s.keys())[len(list(thompsonOutput.s.keys())) -1]}
 )
+
+#build a DFA from NFA (wow i'm really trusting this library with my grade)
+dfa = DFA.from_nfa(nfa)
+print(dfa.validate())
 
 #check for NFA and DFA
 if(args.DFA):
@@ -46,9 +50,9 @@ if(args.NFA):
 
 
 #outputs mostly for testing atm 
-print("S")
-print(thompsonOutput.s)
-print("KEYS")
-print(thompsonOutput.keys)
-print("INPUT SYMBOLS")
-print(thompsonOutput.inputSymbols)
+#print("S")
+#print(thompsonOutput.s)
+#print("KEYS")
+#print(thompsonOutput.keys)
+#print("INPUT SYMBOLS")
+#print(thompsonOutput.inputSymbols)
