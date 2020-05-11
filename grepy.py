@@ -24,12 +24,6 @@ regexToMatch = args.REGEX
 #thompson alg output returns essentially a transition table
 thompsonOutput = thompsonsAlg.thompsonsAlg(regexToMatch)
 
-#outputs of the 5 touple
-#print(set(thompsonOutput.s.keys()))
-#print(set(thompsonOutput.keys))
-#print(type(thompsonOutput.s))
-#print(list(thompsonOutput.s.keys())[0])
-#print({list(thompsonOutput.s.keys())[len(list(thompsonOutput.s.keys())) -1]})
 
 #let's try building an NFA!
 nfa = NFA(
@@ -42,14 +36,11 @@ nfa = NFA(
 
 #build a DFA from NFA (wow i'm really trusting this library with my grade)
 dfa = DFA.from_nfa(nfa)
-print(dfa.validate())
 
 #check for NFA and DFA
 if(args.DFA):
-    #print("DFA SPECIFIED")
     dot.graphDFA(dfa)
 if(args.NFA):
-    #print("NFA SPECIFIED")
     dot.graphNFA(nfa)
 
 

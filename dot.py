@@ -1,5 +1,8 @@
 from graphviz import Digraph
 
+import os
+os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/graphviz-2.38/bin'
+
 def graphNFA(NFA):
     f = Digraph('NFA', filename='nfa.dot')
 
@@ -13,15 +16,15 @@ def graphNFA(NFA):
             f.attr('node', shape='circle')
             f.node(state)
 
-    print((NFA.transitions))
+    #print((NFA.transitions))
     t = NFA.transitions
 
     for key in t: #n^3 that's rough
-        print(key)
+        #print(key)
         for transCharacter in t[key]:
-            print(transCharacter)
+            #print(transCharacter)
             for endLoc in t[key][transCharacter]:
-                print(endLoc)
+                #print(endLoc)
                 if (transCharacter == ''):
                     transCharacter = 'Epsilon'
                 f.edge(key, endLoc, label= transCharacter)
@@ -49,18 +52,15 @@ def graphDFA(DFA):
     #print(stateDict)
     #print((DFA.transitions))
     t = DFA.transitions
-    print(DFA.final_states)
+    #print(DFA.final_states)
 
     for key in t: #n^3 that's rough
         #print(key)
         #print(t[key])
         #print()
         for transCharacter in t[key]:
-            print(transCharacter)
-            print(stateDict[t[key][transCharacter]])
+            #print(transCharacter)
+            #print(stateDict[t[key][transCharacter]])
             f.edge(stateDict[key], stateDict[t[key][transCharacter]], label=transCharacter)
-            #for endLoc in t[key][transCharacter]:
-                #print(endLoc)
-                #f.edge(stateDict[key], endLoc, label= transCharacter)
 
     f.render()
