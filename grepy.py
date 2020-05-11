@@ -12,11 +12,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-n", "--NFA", help="location to which NFA file will be output")
 parser.add_argument("-d", "--DFA", help="location to shich DFA file will be output")
 parser.add_argument("REGEX")
+parser.add_argument("FILE")
 args = parser.parse_args()
 
 #get regex
-regexFile = open(args.REGEX, "r")
-regexToMatch = regexFile.read()
+file = open(args.FILE, "r")
+regexToMatch = args.REGEX
 
 
 #thompson alg output returns essentially a transition table
