@@ -6,6 +6,7 @@ from automata.fa.nfa import NFA
 from automata.fa.dfa import DFA
 from graphviz import Digraph
 import thompsonsAlg
+import dot
 
 #create commandline arguments 
 parser = argparse.ArgumentParser()
@@ -16,7 +17,7 @@ parser.add_argument("FILE")
 args = parser.parse_args()
 
 #get regex
-file = open(args.FILE, "r")
+inputFile = open(args.FILE, "r")
 regexToMatch = args.REGEX
 
 
@@ -45,9 +46,11 @@ print(dfa.validate())
 
 #check for NFA and DFA
 if(args.DFA):
-    print("DFA SPECIFIED")
+    #print("DFA SPECIFIED")
+    dot.graphDFA(dfa)
 if(args.NFA):
-    print("NFA SPECIFIED")
+    #print("NFA SPECIFIED")
+    dot.graphNFA(nfa)
 
 
 #outputs mostly for testing atm 
@@ -57,3 +60,4 @@ if(args.NFA):
 #print(thompsonOutput.keys)
 #print("INPUT SYMBOLS")
 #print(thompsonOutput.inputSymbols)
+#print(inputFile)
