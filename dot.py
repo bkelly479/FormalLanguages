@@ -16,15 +16,11 @@ def graphNFA(NFA):
             f.attr('node', shape='circle')
             f.node(state)
 
-    #print((NFA.transitions))
     t = NFA.transitions
 
     for key in t: #n^3 that's rough
-        #print(key)
         for transCharacter in t[key]:
-            #print(transCharacter)
             for endLoc in t[key][transCharacter]:
-                #print(endLoc)
                 if (transCharacter == ''):
                     transCharacter = 'Epsilon'
                 f.edge(key, endLoc, label= transCharacter)
@@ -49,18 +45,10 @@ def graphDFA(DFA):
             f.attr('node', shape='circle')
             f.node(stateDict[state])
 
-    #print(stateDict)
-    #print((DFA.transitions))
     t = DFA.transitions
-    #print(DFA.final_states)
 
-    for key in t: #n^3 that's rough
-        #print(key)
-        #print(t[key])
-        #print()
+    for key in t: #n^2 better but not great
         for transCharacter in t[key]:
-            #print(transCharacter)
-            #print(stateDict[t[key][transCharacter]])
             f.edge(stateDict[key], stateDict[t[key][transCharacter]], label=transCharacter)
 
     f.render()
