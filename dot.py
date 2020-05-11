@@ -29,7 +29,7 @@ def graphNFA(NFA):
                     transCharacter = 'Epsilon'
                 f.edge(key, endLoc, label= transCharacter)
 
-    f.view()
+    f.render()
 
 def graphDFA(DFA):
     f = f = Digraph('DFA', filename='DFA.dot')
