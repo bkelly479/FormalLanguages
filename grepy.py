@@ -7,6 +7,7 @@ from automata.fa.dfa import DFA
 from graphviz import Digraph
 import thompsonsAlg
 import dot
+import re
 
 #create commandline arguments 
 parser = argparse.ArgumentParser()
@@ -18,6 +19,7 @@ args = parser.parse_args()
 
 #get regex
 inputFile = open(args.FILE, "r")
+inputLines = inputFile.readlines()
 regexToMatch = args.REGEX
 
 
@@ -39,10 +41,18 @@ dfa = DFA.from_nfa(nfa)
 
 #check for NFA and DFA
 if(args.DFA):
-    dot.graphDFA(dfa)
+    dot.graphDFA(dfa, args.DFA)
 if(args.NFA):
-    dot.graphNFA(nfa)
+    dot.graphNFA(nfa, args.NFA)
 
+
+for line in inputLines:
+    line = ''.join(c for c in line if c.isprintable())
+    try:
+        if(dfa.accepts_input(line)):
+            print(repr(line))
+    except:
+        pass
 
 #outputs mostly for testing atm 
 #print("S")

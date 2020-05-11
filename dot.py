@@ -3,8 +3,8 @@ from graphviz import Digraph
 import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/graphviz-2.38/bin'
 
-def graphNFA(NFA):
-    f = Digraph('NFA', filename='nfa.dot')
+def graphNFA(NFA, fileName):
+    f = Digraph('NFA', filename=fileName)
 
     f.attr(rankdir='LR', size='8,5')
     
@@ -27,8 +27,8 @@ def graphNFA(NFA):
 
     f.render()
 
-def graphDFA(DFA):
-    f = f = Digraph('DFA', filename='DFA.dot')
+def graphDFA(DFA, fileName):
+    f =  Digraph('DFA', filename=fileName)
 
     f.attr(rankdir='LR', size='8,5')
 

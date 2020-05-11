@@ -2,18 +2,18 @@ digraph DFA {
 	rankdir=LR size="8,5"
 	node [shape=circle]
 	q0
-	node [shape=circle]
+	node [shape=doublecircle]
 	q1
 	node [shape=circle]
 	q2
 	node [shape=doublecircle]
 	q3
-	q2 -> q1 [label=b]
-	q2 -> q0 [label=a]
-	q1 -> q1 [label=b]
-	q1 -> q1 [label=a]
-	q0 -> q3 [label=b]
-	q0 -> q0 [label=a]
+	q2 -> q3 [label=a]
+	q2 -> q0 [label=b]
+	q3 -> q0 [label=a]
 	q3 -> q1 [label=b]
-	q3 -> q1 [label=a]
+	q0 -> q0 [label=a]
+	q0 -> q0 [label=b]
+	q1 -> q0 [label=a]
+	q1 -> q1 [label=b]
 }
