@@ -7,3 +7,5 @@ a*b*
 ba+ba+
 
 b*ab*a
+
+ba*ba*
