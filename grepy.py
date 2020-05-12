@@ -13,8 +13,10 @@
 #import required modules 
 
 #will need to pip install these ones
+# pip install automata-lib
 from automata.fa.nfa import NFA
 from automata.fa.dfa import DFA
+#pip install graphviz
 from graphviz import Digraph
 
 #not these ones 
