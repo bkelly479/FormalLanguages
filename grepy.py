@@ -18,13 +18,13 @@ from graphviz import Digraph
 import thompsonsAlg
 import dot
 import re
-#import os
+import os
 
 #create commandline arguments 
 parser = argparse.ArgumentParser()
 parser.add_argument("-n", "--NFA", help="location to which NFA file will be output")
 parser.add_argument("-d", "--DFA", help="location to which DFA file will be output")
-#parser.add_argument("-e", "--ERROR", help="If graphviz is throwing an error because it hasn't been added to path settig this will fix that")
+parser.add_argument("-e", "--ERROR", help="If graphviz is throwing an error because it hasn't been added to path settig this will fix that")
 parser.add_argument("REGEX")
 parser.add_argument("FILE")
 args = parser.parse_args()
@@ -33,10 +33,10 @@ args = parser.parse_args()
 #started working on this and realized involving os is probably a bad idea
 #if you're getting that error maybe uncomment this
 
-#if(args.ERROR):
-#    os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/graphviz-2.38/bin'
-#else:
-#    pass
+if(args.ERROR):
+    os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/graphviz-2.38/bin'
+else:
+    pass
 
 
 
