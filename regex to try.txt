@@ -1,0 +1,9 @@
+regex to try
+
+a+b+
+
+a*b*
+
+ba+ba+
+
+b*ab*a

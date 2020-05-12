@@ -7,11 +7,13 @@ class ThompsonNFA:
         self.keys = keys
         self.inputSymbols = inputSymbols
 
-def thompsonsAlg(postfix):
-    regex=''.join(postfix)
-
+def thompsonsAlg(regex):
+    regex=''.join(regex)
+    
+    #list of alphaneumeric chatacters to identify later 
     keys=list(set(re.sub('[^A-Za-z0-9]+', '', regex)))
 
+    #s becomes transition table 
     s={}
     currentState = 0
     lastInputSymbol = ''
