@@ -70,6 +70,7 @@ dfa = DFA.from_nfa(nfa)
 
 #check for NFA and DFA and generate DOT files also outputs a PDF of the same name 
 if(args.DFA):
+    #makes sure it ends with the right file type 
     if(not args.DFA.endswith(".dot")):
         fileName = args.DFA + ".dot"
 
@@ -89,8 +90,10 @@ if(args.NFA):
 
 
 for line in inputLines:
+    #steralize stuff like /n or /r
     line = ''.join(c for c in line if c.isprintable())
     try:
+        #check DFA if it works print it
         if(dfa.accepts_input(line)):
             print(repr(line))
     except:
