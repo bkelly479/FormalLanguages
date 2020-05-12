@@ -11,14 +11,18 @@
 #
 
 #import required modules 
-import argparse
+
+#will need to pip install these ones
 from automata.fa.nfa import NFA
 from automata.fa.dfa import DFA
 from graphviz import Digraph
+
+#not these ones 
 import thompsonsAlg
 import dot
 import re
 import os
+import argparse
 
 #create commandline arguments 
 parser = argparse.ArgumentParser()
