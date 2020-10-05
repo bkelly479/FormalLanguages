@@ -4,12 +4,12 @@ This project was created for the final project of my Formal languages class. It 
 
 ## Usage
 
-# To run the grepy utility
+### To run the grepy utility
 ```
 py -3 .\grepy.py  a*b* testFile.txt
 ```
 
-# To run the utility and create a DFA and NFA
+### To run the utility and create a DFA and NFA
 ```
 py -3 .\grepy.py -d DFA.dot -n NFA.dot a*b* testFile.txt
 ```
