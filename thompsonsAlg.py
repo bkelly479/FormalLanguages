@@ -9,22 +9,21 @@ class ThompsonNFA:
 
 def thompsonsAlg(regex):
     regex=''.join(regex)
-    
-    #list of alphaneumeric chatacters to identify later 
+
+    #list of alphaneumeric chatacters to identify later
     keys=list(set(re.sub('[^A-Za-z0-9]+', '', regex)))
 
-    #s becomes transition table 
+    #s becomes transition table
     s={}
     currentState = 0
     lastInputSymbol = ''
-    
+
     inputSymbols = []
 
     #assume we get a valid regex and will create an NFA
     s['q' + str(currentState)] = {'': {'q' + str(currentState + 1)}}
     currentState += 1
 
-    #print("REGEX IN THOMPSON ALG: " + regex)
 
 
     for i in regex:
@@ -38,14 +37,11 @@ def thompsonsAlg(regex):
             #record last input symbol
             lastInputSymbol = i
 
-            #incriment current state 
+            #incriment current state
             currentState += 1
 
         elif i == '*':
 
-            #this is hacky and not technically right but i'm assuming a * or + has to come
-            #after an input symbol this isn't right but the world ended like 2 months ago so whatever
-            
             #remove the previous state
             del s['q' + str(currentState - 1)]
             #add a spontaneous transition to the current state and state two later
@@ -54,14 +50,14 @@ def thompsonsAlg(regex):
             s['q' + str(currentState)] = {lastInputSymbol : {'q' + str(currentState + 1)}}
             #next state can transition back to current state and forward to currentState + 2
             s['q' + str(currentState + 1)] = {'': {('q' + str(currentState)), ('q' + str(currentState + 2))}}
-            
+
             #incriment current state twice, currentState+2 doesn't exist ATM but will be created
             #either by the next i or by the line adding a final state at the end
             currentState += 2
         elif i == '+':
 
-            #this will be simmilar to the * but with fewer spontaneous transitions 
-            
+            #this will be simmilar to the * but with fewer spontaneous transitions
+
             #remove the previous state
             del s['q' + str(currentState - 1)]
             s['q' + str(currentState - 1)] = {'' : {'q' + str(currentState)}}
@@ -69,16 +65,11 @@ def thompsonsAlg(regex):
             s['q' + str(currentState + 1)] = {'' : {('q' + str(currentState)),('q' + str(currentState + 2))}}
 
             currentState += 2
-            
+
         else:
             pass
-    
-    #add last accepting state 
-    s['q' + str(currentState)] = {'':''}
 
-    #print('THIS IS SOMETHING IMPORTANT')
-    #print(s)
-    #print(keys)
-    #print(type(inputSymbols))
+    #add last accepting state
+    s['q' + str(currentState)] = {'':''}
 
     return ThompsonNFA(s, keys, inputSymbols)

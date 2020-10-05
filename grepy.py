@@ -1,16 +1,8 @@
 #!/use/bin/env py -3
 
-#   I'll be honest this is not a great implementation
-#   i used a library to do most of the DFA and NFA work which probably great
-#   Additionally this doesn't take parens () into account 
-#   messed up there totally forgot about that one     
-#   other than that it's pretty decent code i don't write a ton of python so i'm kinda happy with it
-#   
-#
-#
-#
 
-#import required modules 
+
+#import required modules
 
 #will need to pip install these ones
 # pip install automata-lib
@@ -19,23 +11,22 @@ from automata.fa.dfa import DFA
 #pip install graphviz
 from graphviz import Digraph
 
-#not these ones 
+#not these ones
 import thompsonsAlg
 import dot
 import re
 #import os
 import argparse
 
-#create commandline arguments 
+#create commandline arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("-n", "--NFA", help="location to which NFA file will be output")
 parser.add_argument("-d", "--DFA", help="location to which DFA file will be output")
-#parser.add_argument("-e", "--ERROR", help="If graphviz is throwing an error because it hasn't been added to path settig this will fix that")
 parser.add_argument("REGEX")
 parser.add_argument("FILE")
 args = parser.parse_args()
 
-#Fixes an error graphviz throws if you don't add it to path 
+#Fixes an error graphviz throws if you don't add it to path
 #started working on this and realized involving os is probably a bad idea
 #if you're getting that error maybe uncomment this
 
@@ -46,7 +37,7 @@ args = parser.parse_args()
 
 
 
-#get file 
+#get file
 inputFile = open(args.FILE, "r")
 inputLines = inputFile.readlines()
 regexToMatch = args.REGEX
@@ -68,9 +59,9 @@ nfa = NFA(
 #build a DFA from NFA (wow i'm really trusting this library with my grade)
 dfa = DFA.from_nfa(nfa)
 
-#check for NFA and DFA and generate DOT files also outputs a PDF of the same name 
+#check for NFA and DFA and generate DOT files also outputs a PDF of the same name
 if(args.DFA):
-    #makes sure it ends with the right file type 
+    #makes sure it ends with the right file type
     if(not args.DFA.endswith(".dot")):
         fileName = args.DFA + ".dot"
 
@@ -79,7 +70,7 @@ if(args.DFA):
         dot.graphDFA(dfa, args.DFA)
 else:
     pass
-    
+
 if(args.NFA):
     if(not args.NFA.endswith(".dot")):
         fileName = args.NFA + ".dot"
@@ -98,4 +89,3 @@ for line in inputLines:
             print(repr(line))
     except:
         pass
-
